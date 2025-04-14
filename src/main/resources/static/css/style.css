@@ -1,0 +1,96 @@
+/* General layout */
+body.dark-theme {
+    background-color: #121212;
+    color: #ffffff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Navbar */
+.navbar {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Featured movie banner */
+.featured-movie .card {
+    border: none;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(0,0,0,0.5);
+}
+
+.featured-movie .card-img-overlay {
+    background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.1));
+    border-radius: 1rem;
+    padding: 2rem;
+}
+
+/* Movie cards */
+.movie-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 0.75rem;
+}
+
+.movie-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+}
+
+/* Tagline tooltip icon */
+.tagline-tooltip {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #333;
+    color: #fff;
+    padding: 0.25rem 0.5rem;
+    border-radius: 50%;
+    font-size: 0.75rem;
+    cursor: help;
+}
+
+/* Trailer iframe */
+.ratio iframe {
+    border-radius: 1rem;
+    border: none;
+}
+
+/* Buttons */
+.btn-outline-light, .btn-outline-warning {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-outline-light:hover,
+.btn-outline-warning:hover {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+/* Export button */
+.btn-success {
+    border-radius: 0.5rem;
+}
+
+/* Light theme support */
+body.light-theme {
+    background-color: #f8f9fa;
+    color: #212529;
+}
+
+body.light-theme .navbar {
+    background-color: #ffffff !important;
+    color: #000;
+}
+
+body.light-theme .navbar a {
+    color: #000 !important;
+}
+
+body.light-theme .movie-card {
+    background-color: #ffffff !important;
+    color: #000;
+}
+
+body.light-theme .tagline-tooltip {
+    background-color: #ddd;
+    color: #000;
+}

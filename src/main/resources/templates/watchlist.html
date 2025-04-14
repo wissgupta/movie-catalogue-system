@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Watchlist</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    <script th:src="@{/js/script.js}" defer></script>
+</head>
+<body class="dark-theme">
+<!-- Header Fragment -->
+<div th:replace="~{fragments/header :: header}"></div>
+
+<div class="container mt-4">
+    <h1 class="mb-4 text-white">🕶️ Your Watchlist</h1>
+
+    <!-- Watchlist Movies -->
+    <div class="row" th:if="${watchlist != null && !watchlist.isEmpty()}">
+        <div class="col-md-3 mb-4" th:each="movie : ${watchlist}">
+            <div th:replace="~{fragments/movie-card :: card(movie=${movie})}"></div>
+        </div>
+    </div>
+
+    <!-- Empty Watchlist -->
+    <div th:if="${watchlist == null || watchlist.isEmpty()}" class="text-center text-muted mt-5">
+        <p>Your watchlist is currently empty.</p>
+        <a href="/" class="btn btn-outline-light">Browse Movies</a>
+    </div>
+</div>
+
+<!-- Footer Fragment -->
+<div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>

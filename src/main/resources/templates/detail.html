@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${movie.title}">Movie Detail</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    <script th:src="@{/js/script.js}" defer></script>
+</head>
+<body class="dark-theme">
+<!-- Header Fragment -->
+<div th:replace="~{fragments/header :: header}"></div>
+
+<div class="container mt-4">
+
+    <div class="row">
+        <!-- Poster -->
+        <div class="col-md-4 text-center">
+            <img th:src="'https://image.tmdb.org/t/p/w500' + ${movie.posterPath}" class="img-fluid rounded shadow" alt="Poster"/>
+        </div>
+
+        <!-- Movie Info -->
+        <div class="col-md-8">
+            <h1 class="display-4" th:text="${movie.title}">Movie Title</h1>
+            <p class="text-muted" th:if="${movie.tagline}" th:text="${movie.tagline}">Tagline goes here...</p>
+            <p th:text="${movie.overview}">Overview</p>
+            <p><strong>Release Date:</strong> <span th:text="${movie.releaseDate}">2025-01-01</span></p>
+            <p><strong>Rating:</strong> <span th:text="${movie.rating}">8.7</span>/10</p>
+
+            <!-- Favorite Button -->
+            <!-- Remove from Favorites -->
+            <form th:if="${isFavorite}" th:action="@{/favorite/remove}" method="post">
+                <input type="hidden" name="id" th:value="${movie.id}"/>
+                <button type="submit" class="btn btn-outline-warning mt-2">
+                    Remove from Favorites
+                </button>
+            </form>
+
+            <!-- Add to Favorites -->
+            <form th:unless="${isFavorite}" th:action="@{/favorite/add}" method="post">
+                <input type="hidden" name="id" th:value="${movie.id}"/>
+                <input type="hidden" name="title" th:value="${movie.title}"/>
+                <input type="hidden" name="posterPath" th:value="${movie.posterPath}"/>
+                <input type="hidden" name="overview" th:value="${movie.overview}"/>
+                <input type="hidden" name="releaseDate" th:value="${movie.releaseDate}"/>
+                <input type="hidden" name="rating" th:value="${movie.rating}"/>
+                <input type="hidden" name="backdropPath" th:value="${movie.backdropPath}"/>
+                <input type="hidden" name="tagline" th:value="${movie.tagline}"/>
+
+                <button type="submit" class="btn btn-outline-warning mt-2">
+                    Add to Favorites
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Trailer Section -->
+    <div class="mt-5" th:if="${trailerUrl != null}">
+        <h3>🎬 Trailer</h3>
+        <div class="ratio ratio-16x9">
+            <iframe th:src="${trailerUrl}" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <!-- Reviews -->
+    <div class="mt-5">
+        <h3>⭐ Reviews</h3>
+        <div th:if="${#lists.isEmpty(reviews)}">No reviews available.</div>
+        <div th:each="review : ${reviews}" class="alert alert-dark mt-3" th:text="${review}"></div>
+    </div>
+
+</div>
+
+<!-- Footer Fragment -->
+<div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>
