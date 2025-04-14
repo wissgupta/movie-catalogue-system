@@ -21,7 +21,7 @@ A full-stack Java Spring Boot web application that lets users browse, search, an
 
 ## 🖥️ Demo Preview
 
-📌 Coming Soon: Add screenshots or a link to a short video demo!
+https://youtu.be/6t3P1njr2wM
 
 ---
 
