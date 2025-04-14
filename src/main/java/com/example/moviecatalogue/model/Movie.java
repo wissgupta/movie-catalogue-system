@@ -1,5 +1,6 @@
 package com.example.moviecatalogue.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
@@ -10,90 +11,42 @@ public class Movie {
     private Long id;
 
     private String title;
+
+    @Column(length = 2000) // ✅ Increase limit to avoid overflow
     private String overview;
+
     private String posterPath;
     private String backdropPath;
     private String releaseDate;
     private double rating;
+
+    @Column(length = 1000)
     private String tagline;
 
-    // Constructors
+    // Getters and setters
     public Movie() {}
 
-    public Movie(Long id, String title, String overview, String posterPath, String backdropPath,
-                 String releaseDate, double rating, String tagline) {
-        this.id = id;
-        this.title = title;
-        this.overview = overview;
-        this.posterPath = posterPath;
-        this.backdropPath = backdropPath;
-        this.releaseDate = releaseDate;
-        this.rating = rating;
-        this.tagline = tagline;
-    }
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
-    // Getters and setters
-    public Long getId() {
-        return id;
-    }
+    public String getTitle() { return title; }
+    public void setTitle(String title) { this.title = title; }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    public String getOverview() { return overview; }
+    public void setOverview(String overview) { this.overview = overview; }
 
-    public String getTitle() {
-        return title;
-    }
+    public String getPosterPath() { return posterPath; }
+    public void setPosterPath(String posterPath) { this.posterPath = posterPath; }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+    public String getBackdropPath() { return backdropPath; }
+    public void setBackdropPath(String backdropPath) { this.backdropPath = backdropPath; }
 
-    public String getOverview() {
-        return overview;
-    }
+    public String getReleaseDate() { return releaseDate; }
+    public void setReleaseDate(String releaseDate) { this.releaseDate = releaseDate; }
 
-    public void setOverview(String overview) {
-        this.overview = overview;
-    }
+    public double getRating() { return rating; }
+    public void setRating(double rating) { this.rating = rating; }
 
-    public String getPosterPath() {
-        return posterPath;
-    }
-
-    public void setPosterPath(String posterPath) {
-        this.posterPath = posterPath;
-    }
-
-    public String getBackdropPath() {
-        return backdropPath;
-    }
-
-    public void setBackdropPath(String backdropPath) {
-        this.backdropPath = backdropPath;
-    }
-
-    public String getReleaseDate() {
-        return releaseDate;
-    }
-
-    public void setReleaseDate(String releaseDate) {
-        this.releaseDate = releaseDate;
-    }
-
-    public double getRating() {
-        return rating;
-    }
-
-    public void setRating(double rating) {
-        this.rating = rating;
-    }
-
-    public String getTagline() {
-        return tagline;
-    }
-
-    public void setTagline(String tagline) {
-        this.tagline = tagline;
-    }
+    public String getTagline() { return tagline; }
+    public void setTagline(String tagline) { this.tagline = tagline; }
 }
